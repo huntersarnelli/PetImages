@@ -63,3 +63,23 @@ class PetCNN(nn.Module):
         x = self.dropout(x)
         x = torch.sigmoid(self.fc2(x))
         return x
+    
+
+
+# Data Augmentation and Preprocessing
+train_transforms = transforms.Compose([
+    transforms.Resize((128, 128)),
+    transforms.RandomRotation(30),
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomAffine(degrees=0, translate=(0.2, 0.2), shear=0.2, scale=(0.7, 1.3)),
+    transforms.ColorJitter(brightness=0.2),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+])
+
+val_transforms = transforms.Compose([
+    transforms.Resize((128, 128)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+])
+
