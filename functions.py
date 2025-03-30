@@ -54,7 +54,7 @@ def create_train_val_split(dog_files, cat_files, val_size=0.2):
 
 
 
-# Step 5: Training Loop with Checkpoint
+# Training Loop with Checkpoint
 def train_model(model, train_loader, val_loader, epochs=25, name = 'default'):
 
     criterion = nn.BCELoss()
